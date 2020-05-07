@@ -1,19 +1,24 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
-}
+//LIBRARY IMPORTS 
+import {
+  createAppContainer,
+  createSwitchNavigator,
+} from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+import MainScreen from './MainScreen';
+import OrderScreen from './OrderScreen';
+import SuccessScreen from './SuccessScreen';
+
+const MainNavigator = createStackNavigator({
+  MainScreen: MainScreen,
+  OrderScreen: OrderScreen,
+  SuccessScreen: SuccessScreen
+})
+
+export default createAppContainer(createSwitchNavigator({
+    MainStack: MainNavigator
+  }, {
+    initialRouteName: 'MainStack'
+  }));
